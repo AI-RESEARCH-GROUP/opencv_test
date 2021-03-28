@@ -9,7 +9,7 @@ find_package(OpenCV REQUIRED)
 # directory of opencv headers
 include_directories(${OpenCV_INCLUDE_DIRS})
 # name of executable file and path of source file
-add_executable(opencv_test src/opencv_test.cpp)
+add_executable(opencv_test src/column_intro.cpp)
 # directory of opencv library
 link_directories(${OpenCV_LIBRARY_DIRS})
 # opencv libraries
