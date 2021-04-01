@@ -4,18 +4,25 @@
 #include <iostream>
 #include <opencv2/imgproc/types_c.h>
 
+#include "../include/func.h"
+
 using namespace std;
 using namespace cv;
+using namespace func;
 
 int main(int argc, char** argv)
 {
+
+    std::cout << "main.cpp" << std::endl;
+    func_print();
+
     if (argc != 2)
     {
         cout << "Usage: opencv_test <image path>" << endl;
         return -1;
     }
 
-    char *imgName = argv[1];
+    char const *imgName = "/home/zhaoqiangwei/CLionProjects/opencv_test/bin/test.jpg";
     Mat image;
 
     image = imread(imgName, 1);

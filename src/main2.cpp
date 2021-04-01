@@ -5,11 +5,18 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 
+#include "../include/func.h"
+
 using namespace cv;
 using namespace std;
+using namespace func;
+
 
 int main(int argc, char **argv)
 {
+    std::cout << "main2.cpp" << std::endl;
+    func_print();
+
     if (argc < 2)
     {
         cout << "No arguments found!" << endl;
@@ -24,6 +31,8 @@ int main(int argc, char **argv)
     Mat img, rst;
     // the distance of every image move in loop
     float pitch = 0.0;
+
+    std::cout << "main2.cpp" << std::endl;
 
     for (int i = 0; i < argc - 1; i++)
     {
