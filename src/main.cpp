@@ -7,7 +7,6 @@
 #include "../include/func.h"
 
 using namespace std;
-using namespace cv;
 using namespace func;
 
 int main(int argc, char** argv)
@@ -23,15 +22,15 @@ int main(int argc, char** argv)
     }
 
     char const *imgName = "/home/zhaoqiangwei/CLionProjects/opencv_test/bin/test.jpg";
-    Mat image;
+    cv::Mat image;
 
-    image = imread(imgName, 1);
+    image = cv::imread(imgName, 1);
     if (!image.data)
     {
         cout << "No image data" << endl;
         return -1;
     }
-    Mat gray_img;
+    cv::Mat gray_img;
 
     cvtColor(image, gray_img, CV_BGR2GRAY);
     imwrite("/home/zhaoqiangwei/CLionProjects/opencv_test/bin/result.jpg", gray_img);
