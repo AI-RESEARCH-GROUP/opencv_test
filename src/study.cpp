@@ -4,6 +4,7 @@
 
 
 #include <opencv2/core.hpp>
+#include <opencv2/opencv.hpp>
 #include <iostream>
 
 #include "opencv2/imgproc.hpp"
@@ -12,12 +13,183 @@
 #include<opencv2/opencv.hpp>
 #include<opencv2/features2d.hpp>
 
+
 #include<iostream>
 
 using namespace std;
 using namespace cv;
 
+Mat& ScanImageAndReduceC(Mat& I, const uchar* const table)
+{
+    // accept only char type matrices
+    CV_Assert(I.depth() != sizeof(uchar));
+
+    int channels = I.channels();
+
+    int nRows = I.rows * channels;
+    int nCols = I.cols;
+
+    if (I.isContinuous())
+    {
+        nCols *= nRows;
+        nRows = 1;
+    }
+
+    int i,j;
+    uchar* p;
+    for( i = 0; i < nRows; ++i)
+    {
+        p = I.ptr<uchar>(i);
+        for ( j = 0; j < nCols; ++j)
+        {
+            p[j] = table[p[j]];
+        }
+    }
+    return I;
+}
+
+
+int func6(){
+    /// 读入用户提供的图像
+    std::string image_path = "";
+    std::cout<<"* Enter image-path: ";
+    std::cin>> image_path;
+    Mat image = imread( image_path);
+    Mat new_image = Mat::zeros( image.size(), image.type() );
+
+    /// 初始化
+    double alpha = 0.5; double beta; double input;
+    cout << " Basic Linear Transforms " << endl;
+    cout << "-------------------------" << endl;
+    cout << "* Enter the alpha value [1.0-3.0]: ";
+    cin >> alpha;
+    cout << "* Enter the beta value [0-100]: ";
+    cin >> beta;
+
+    /// 执行运算 new_image(i,j) = alpha*image(i,j) + beta
+    for( int y = 0; y < image.rows; y++ )
+    {
+        for( int x = 0; x < image.cols; x++ )
+        {
+            for( int c = 0; c < 3; c++ )
+            {
+                new_image.at<Vec3b>(y,x)[c] = saturate_cast<uchar>( alpha*( image.at<Vec3b>(y,x)[c] ) + beta );
+            }
+        }
+    }
+
+    /// 创建窗口
+    namedWindow("Original Image", 1);
+    namedWindow("New Image", 1);
+
+    /// 显示图像
+    imshow("Original Image", image);
+    imshow("New Image", new_image);
+
+    /// 等待用户按键
+    waitKey();
+    return 0;
+}
+
+int func5(){
+    double alpha = 0.5; double beta; double input;
+
+    Mat src1, src2, dst;
+
+    /// Ask the user enter alpha
+    std::cout<<" Simple Linear Blender "<<std::endl;
+    std::cout<<"-----------------------"<<std::endl;
+    std::cout<<"* Enter alpha [0-1]: ";
+    std::cin>>input;
+
+    /// We use the alpha provided by the user iff it is between 0 and 1
+    if( alpha >= 0 && alpha <= 1 )
+    { alpha = input; }
+
+    /// Read image ( same size, same type )
+    src1 = imread("/home/zhaoqiangwei/mygit/com.cplusplus/opencv_test/img1.jpg");
+    src2 = imread("/home/zhaoqiangwei/mygit/com.cplusplus/opencv_test/img2.jpg");
+
+    if( !src1.data ) { printf("Error loading src1 \n"); return -1; }
+    if( !src2.data ) { printf("Error loading src2 \n"); return -1; }
+
+    /// Create Windows
+    namedWindow("Linear Blend", 1);
+
+    beta = ( 1.0 - alpha );
+    addWeighted( src1, alpha, src2, beta, 0.0, dst);
+
+    imshow( "Linear Blend", dst );
+
+    waitKey(0);
+    return 0;
+}
+
+int func4(){
+    Mat src1 = imread("../../images/LinuxLogo.jpg");
+
+    int divideWith; // convert our input string to number - C++ style
+    stringstream s;
+    s << "10";
+    s >> divideWith;
+    if (!s)
+    {
+        cout << "Invalid number entered for dividing. " << endl;
+        return -1;
+    }
+
+    uchar table[256];
+    for (int i = 0; i < 256; ++i)
+        table[i] = divideWith* (i/divideWith);
+
+    cout << "Times passed in seconds: " << table << endl;
+
+    double t = (double)getTickCount();
+// 做点什么 ...
+    t = ((double)getTickCount() - t)/getTickFrequency();
+    cout << "Times passed in seconds: " << t << endl;
+
+}
+
 int func0() {
+
+    Mat M2(2,2, CV_8UC3, Scalar(0,0,255));
+    cout << "M = " << endl << " " << M2 << endl << endl;
+
+    int sz[3] = {2,2,2};
+    Mat L(3,sz, CV_8UC(1), Scalar::all(0));
+
+    M2.create(4,4, CV_8UC(2));
+    cout << "M = "<< endl << " "  << M2 << endl << endl;
+
+    Mat C2 = (Mat_<double>(3,3) << 0, -1, 0, -1, 5, -1, 0, -1, 0);
+    cout << "C = " << endl << " " << C2 << endl << endl;
+
+    Mat RowClone = C2.row(1).clone();
+    cout << "RowClone = " << endl << " " << RowClone << endl << endl;
+
+    Mat R = Mat(3, 2, CV_8UC3);
+    randu(R, Scalar::all(0), Scalar::all(255));
+
+    cout << "R (default) = " << endl <<        R           << endl << endl;
+    cout << "R (python)  = " << endl << format(R, Formatter::FMT_PYTHON) << endl << endl;
+    cout << "R (csv)     = " << endl << format(R, Formatter::FMT_CSV ) << endl << endl;
+
+    Point2f P(5, 1);
+    cout << "Point (2D) = " << P << endl << endl;
+    Point3f P3f(2, 6, 7);
+    cout << "Point (3D) = " << P3f << endl << endl;
+
+    vector<float> v;
+    v.push_back( (float)CV_PI);
+    v.push_back(2);
+    v.push_back(3.01f);
+    cout << "Vector of floats via Mat = " << Mat(v) << endl << endl;
+
+
+    Mat M(2,2, CV_8UC3, Scalar(0,0,255));
+    cout << "M = " << endl << " " << M << endl << endl;
+
     cv::Mat a(100, 100, CV_32F);
     cv::randu(a, cv::Scalar::all(1), cv::Scalar::all(std::rand()));
     cv::log(a, a);
@@ -239,7 +411,10 @@ int func2(){
 
 int main() {
 //    func0();
-    func1();
+//    func1();
 //    func2();
+//    func4();
+//    func5();
+    func6();
     return 0;
 }

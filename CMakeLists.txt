@@ -32,9 +32,10 @@ FILE(GLOB OPENCV_TEST_RUN_CPP1 ${PROJECT_SOURCE_DIR}/src/main.cpp ${LIB_CPP})
 FILE(GLOB OPENCV_TEST_RUN_CPP2 ${PROJECT_SOURCE_DIR}/src/main2.cpp ${LIB_CPP})
 FILE(GLOB OPENCV_TEST_H ${PROJECT_SOURCE_DIR}/include/)
 
-add_executable(opencv_test ${OPENCV_TEST_RUN_CPP1} )
+add_executable(opencv_test ${OPENCV_TEST_RUN_CPP1})
 add_executable(opencv_test2 ${OPENCV_TEST_RUN_CPP2})
 add_executable(opencv_test3 src/study.cpp)
+add_executable(opencv_test4 src/read_write.cpp)
 include_directories(${STATIC_LIB_H})
 
 #################################
@@ -56,9 +57,11 @@ include_directories( ${OpenCV_INCLUDE_DIRS} )
 target_link_libraries(opencv_test ${OpenCV_LIBS})
 target_link_libraries(opencv_test2 ${OpenCV_LIBS})
 target_link_libraries(opencv_test3 ${OpenCV_LIBS})
+target_link_libraries(opencv_test4 ${OpenCV_LIBS})
 
 
 # install it
 install(TARGETS opencv_test DESTINATION opencv_test_dir/bin)
 install(TARGETS opencv_test2 DESTINATION opencv_test_dir/bin)
 install(TARGETS opencv_test3 DESTINATION opencv_test_dir/bin)
+install(TARGETS opencv_test4 DESTINATION opencv_test_dir/bin)
