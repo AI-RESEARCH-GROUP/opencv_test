@@ -37,6 +37,7 @@ add_executable(opencv_test2 ${OPENCV_TEST_RUN_CPP2})
 add_executable(opencv_test3 src/study.cpp)
 add_executable(opencv_test4 src/read_write.cpp)
 add_executable(opencv_test5 src/draw.cpp)
+add_executable(opencv_test6 src/feature2d.cpp)
 
 include_directories(${STATIC_LIB_H})
 
@@ -61,6 +62,8 @@ target_link_libraries(opencv_test2 ${OpenCV_LIBS})
 target_link_libraries(opencv_test3 ${OpenCV_LIBS})
 target_link_libraries(opencv_test4 ${OpenCV_LIBS})
 target_link_libraries(opencv_test5 ${OpenCV_LIBS})
+target_link_libraries(opencv_test6 ${OpenCV_LIBS})
+
 
 
 # install it
@@ -69,3 +72,4 @@ install(TARGETS opencv_test2 DESTINATION opencv_test_dir/bin)
 install(TARGETS opencv_test3 DESTINATION opencv_test_dir/bin)
 install(TARGETS opencv_test4 DESTINATION opencv_test_dir/bin)
 install(TARGETS opencv_test5 DESTINATION opencv_test_dir/bin)
+install(TARGETS opencv_test6 DESTINATION opencv_test_dir/bin)

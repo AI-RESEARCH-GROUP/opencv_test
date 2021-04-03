@@ -10,6 +10,8 @@
 #include <opencv2/imgproc/types_c.h>
 
 
+
+
 #include <iostream>
 #include <string>
 
@@ -78,6 +80,7 @@ int Displaying_Random_Text( Mat image, char* window_name, RNG rng ){
 int Displaying_Big_End( Mat image, char* window_name, RNG rng ){
 
 }
+
 
 
 
