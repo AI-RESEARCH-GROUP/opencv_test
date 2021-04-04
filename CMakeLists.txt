@@ -40,6 +40,8 @@ add_executable(opencv_test5 src/draw.cpp)
 add_executable(opencv_test6 src/feature2d.cpp)
 add_executable(opencv_test7 src/ml.cpp)
 add_executable(opencv_detect_face src/detect_face.cpp)
+add_executable(opencv_video_capture_detect_face src/video_capture_detect.cpp)
+
 
 include_directories(${STATIC_LIB_H})
 
@@ -67,6 +69,7 @@ target_link_libraries(opencv_test5 ${OpenCV_LIBS})
 target_link_libraries(opencv_test6 ${OpenCV_LIBS})
 target_link_libraries(opencv_test7 ${OpenCV_LIBS})
 target_link_libraries(opencv_detect_face ${OpenCV_LIBS})
+target_link_libraries(opencv_video_capture_detect_face ${OpenCV_LIBS})
 
 
 
@@ -79,4 +82,5 @@ install(TARGETS opencv_test5 DESTINATION opencv_test_dir/bin)
 install(TARGETS opencv_test6 DESTINATION opencv_test_dir/bin)
 install(TARGETS opencv_test7 DESTINATION opencv_test_dir/bin)
 install(TARGETS opencv_detect_face DESTINATION opencv_test_dir/bin)
+install(TARGETS opencv_video_capture_detect_face DESTINATION opencv_test_dir/bin)
 
