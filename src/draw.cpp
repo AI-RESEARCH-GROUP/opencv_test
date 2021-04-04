@@ -103,7 +103,7 @@ int main(int ac, char **av) {
     imshow("image", draw);
     waitKey();
 
-    Mat img_tmp = imread("/home/zhaoqiangwei/mygit/com.cplusplus/opencv_test/img1.jpg\"");
+    Mat img_tmp = imread("/home/zhaoqiangwei/mygit/com.cplusplus/opencv_test/img1.jpg");
     IplImage img1 = img_tmp;
     CvMat m = img_tmp;
 
