@@ -7,6 +7,8 @@
 using namespace cv;
 using namespace std;
 
+
+//参考博客：https://blog.csdn.net/roslei/article/details/52153475
 string hehe[100]={"clock1.jpeg", "clock2.jpeg", "clock3.jpeg", "clock4.jpeg", "clock5.jpeg", };
 
 string img_prefix = "/home/zhaoqiangwei/mygit/com.cplusplus/opencv_test/image/";
