@@ -17,8 +17,8 @@
 #include <iostream>
 //#include <opencv2/opencv.hpp>
 
-#include "/home/zhaoqiangwei/soft/opencv/installed/opencv4/include/opencv4/opencv2/opencv.hpp"
-#include "/home/zhaoqiangwei/soft/opencv/installed/opencv4/include/opencv4/opencv2/xfeatures2d/nonfree.hpp"
+#include "opencv2/opencv.hpp"
+#include "opencv2/xfeatures2d/nonfree.hpp"
 
 using namespace cv;
 using namespace cv::xfeatures2d;

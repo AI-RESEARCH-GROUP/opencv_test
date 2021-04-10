@@ -8,7 +8,7 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <iostream>
 #include <opencv2/imgproc/types_c.h>
-
+#include <opencv2/highgui/highgui_c.h>
 
 
 
@@ -82,9 +82,6 @@ int Displaying_Big_End( Mat image, char* window_name, RNG rng ){
 }
 
 
-
-
-
 int main(int ac, char **av) {
 
     Mat img = imread("/home/zhaoqiangwei/mygit/com.cplusplus/opencv_test/img1.jpg", 1);
@@ -104,8 +101,9 @@ int main(int ac, char **av) {
     waitKey();
 
     Mat img_tmp = imread("/home/zhaoqiangwei/mygit/com.cplusplus/opencv_test/img1.jpg");
-    IplImage img1 = img_tmp;
-    CvMat m = img_tmp;
+//    IplImage img1 = cvIplImage(img_tmp);
+//    CvMat img_tmp2(img_tmp);
+//    CvMat m = &img_tmp2;
 
     RNG rng( 0xFFFFFFFF );
 

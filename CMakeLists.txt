@@ -32,7 +32,7 @@ FILE(GLOB OPENCV_TEST_RUN_CPP1 ${PROJECT_SOURCE_DIR}/src/main.cpp ${LIB_CPP})
 FILE(GLOB OPENCV_TEST_RUN_CPP2 ${PROJECT_SOURCE_DIR}/src/main2.cpp ${LIB_CPP})
 FILE(GLOB OPENCV_TEST_H ${PROJECT_SOURCE_DIR}/include/)
 
-add_executable(opencv_test ${OPENCV_TEST_RUN_CPP1} src/ml.cpp)
+add_executable(opencv_test ${OPENCV_TEST_RUN_CPP1})
 add_executable(opencv_test2 ${OPENCV_TEST_RUN_CPP2})
 add_executable(opencv_test3 src/study.cpp)
 add_executable(opencv_test4 src/read_write.cpp)
@@ -41,7 +41,7 @@ add_executable(surf_sift src/surf_sift.cpp)
 add_executable(opencv_test7 src/ml.cpp)
 add_executable(opencv_detect_face src/detect_face.cpp)
 add_executable(opencv_video_capture_detect_face src/video_capture_detect.cpp)
-
+add_executable(clock src/clock.cpp)
 
 include_directories(${STATIC_LIB_H})
 
@@ -53,18 +53,26 @@ set(exp "")
 string(APPEND exp "CMAKE_MODULE_PATH = " ${CMAKE_MODULE_PATH})
 message(${exp})
 
-set(OpenCV_DIR "/home/zhaoqiangwei/soft/opencv/opencv-4.5.1/build2")
+#################################
+# 3.1 OpenCV
+#################################
+set(OpenCV_DIR "/home/zhaoqiangwei/soft/shendu/opencv/opencv-4.5.1/build")
 find_package(OpenCV REQUIRED)
+if (OpenCV_FOUND)
+    message(STATUS "OpenCV library found!")
+else ()
+    message(FATAL_ERROR "Could not locate OpenCV" \n)
+endif()
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 # directory of opencv library
-message(${OpenCV_INCLUDE_DIRS})
-message("-----------------------")
-set(OpenCV_INCLUDE_DIRS "/home/zhaoqiangwei/soft/opencv/installed/opencv4/include/opencv4")
+#1
 include_directories(${OpenCV_INCLUDE_DIRS} )
-message(${OpenCV_INCLUDE_DIRS})
-message("-----------------------")
+
+#2
+link_directories(${OpenCV_LIBRARY_DIRS})
 
 #link_directories(${OpenCV_LIBRARY_DIRS})
+
 # opencv libraries
 target_link_libraries(opencv_test ${OpenCV_LIBS})
 target_link_libraries(opencv_test2 ${OpenCV_LIBS})
@@ -75,7 +83,7 @@ target_link_libraries(surf_sift ${OpenCV_LIBS})
 target_link_libraries(opencv_test7 ${OpenCV_LIBS})
 target_link_libraries(opencv_detect_face ${OpenCV_LIBS})
 target_link_libraries(opencv_video_capture_detect_face ${OpenCV_LIBS})
-
+target_link_libraries(clock ${OpenCV_LIBS})
 
 
 # install it
@@ -88,4 +96,4 @@ install(TARGETS surf_sift DESTINATION opencv_test_dir/bin)
 install(TARGETS opencv_test7 DESTINATION opencv_test_dir/bin)
 install(TARGETS opencv_detect_face DESTINATION opencv_test_dir/bin)
 install(TARGETS opencv_video_capture_detect_face DESTINATION opencv_test_dir/bin)
-
+install(TARGETS clock DESTINATION opencv_test_dir/bin)
