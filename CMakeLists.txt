@@ -44,6 +44,7 @@ add_executable(opencv_video_capture_detect_face src/video_capture_detect.cpp)
 add_executable(clock src/clock.cpp)
 add_executable(cdf src/cdf.cpp)
 add_executable(cdf2 src/cdf2.cpp)
+add_executable(watershed src/watershed.cpp)
 
 include_directories(${STATIC_LIB_H})
 
@@ -88,6 +89,7 @@ target_link_libraries(opencv_video_capture_detect_face ${OpenCV_LIBS})
 target_link_libraries(clock ${OpenCV_LIBS})
 target_link_libraries(cdf ${OpenCV_LIBS})
 target_link_libraries(cdf2 ${OpenCV_LIBS})
+target_link_libraries(watershed ${OpenCV_LIBS})
 
 
 # install it
@@ -103,3 +105,4 @@ install(TARGETS opencv_video_capture_detect_face DESTINATION opencv_test_dir/bin
 install(TARGETS clock DESTINATION opencv_test_dir/bin)
 install(TARGETS cdf DESTINATION opencv_test_dir/bin)
 install(TARGETS cdf2 DESTINATION opencv_test_dir/bin)
+install(TARGETS watershed DESTINATION opencv_test_dir/bin)
