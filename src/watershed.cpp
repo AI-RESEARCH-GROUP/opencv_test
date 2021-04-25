@@ -107,10 +107,8 @@ char *randstr(char *str, const int len)
 
 
 void imshow2(const String& winname, InputArray mat){
-//    char * suffix_char = randstr("1234567890", 4);
-//    CString suffix = "";
-//    suffix.Format("%s",suffix_char)
-    imwrite("/home/zhaoqiangwei/mygit/com.cplusplus/opencv_test/image/women_result.jpg",mat);
+    String filename="/home/zhaoqiangwei/mygit/com.cplusplus/opencv_test/image/women_" + winname + ".jpg";
+    imwrite((const String&)filename, mat);
 }
 
 Vec3b RandomColor(int value)//生成随机颜色函数
