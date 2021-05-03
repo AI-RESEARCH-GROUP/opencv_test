@@ -39,7 +39,8 @@ int main()
     engEvalString(ep, "ylabel('y axis');");
     mxDestroyArray(xx); //释放内存
     mxDestroyArray(yy);//释放内存
-    system("sleep 5");
+    system("sleep 5"); //linux
+//    system("pause");  //windows
     engClose(ep);
     return 0;
 }
