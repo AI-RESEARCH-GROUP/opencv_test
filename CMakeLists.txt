@@ -46,6 +46,22 @@ add_executable(cdf src/cdf.cpp)
 add_executable(cdf2 src/cdf2.cpp)
 add_executable(watershed src/watershed.cpp)
 
+#################################
+# matlab_test-------matlab_test
+#################################
+add_executable(matlab_test src/matlab_test.cpp)
+
+include_directories("/home/zhaoqiangwei/matlab/extern/include")
+link_directories("/home/zhaoqiangwei/matlab/bin/glnxa64")
+
+FILE(GLOB Matlab_LIB1 "/home/zhaoqiangwei/matlab/bin/glnxa64/libeng.so")
+FILE(GLOB Matlab_LIB2 "/home/zhaoqiangwei/matlab/bin/glnxa64/libmat.so")
+FILE(GLOB Matlab_LIB3 "/home/zhaoqiangwei/matlab/bin/glnxa64/libmex.so")
+FILE(GLOB Matlab_LIB4 "/home/zhaoqiangwei/matlab/bin/glnxa64/libmx.so")
+
+target_link_libraries(matlab_test ${Matlab_LIB1} ${Matlab_LIB2} ${Matlab_LIB3} ${Matlab_LIB4} )
+
+
 include_directories(${STATIC_LIB_H})
 
 #################################
@@ -106,3 +122,4 @@ install(TARGETS clock DESTINATION opencv_test_dir/bin)
 install(TARGETS cdf DESTINATION opencv_test_dir/bin)
 install(TARGETS cdf2 DESTINATION opencv_test_dir/bin)
 install(TARGETS watershed DESTINATION opencv_test_dir/bin)
+install(TARGETS matlab_test DESTINATION opencv_test_dir/bin)
